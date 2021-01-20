@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Company</th>
+                <th>Title</th>   
+                <th>&nbsp;</th>             
+            </tr>
+        </thead>
+        <tbody>
+            {% for offer in offers %}
+            <tr>
+                <td>{{offer.company.name}}</td>
+                <td>{{offer.title}}</td>
+                <td><a href="{{ path("offer_apply", {id: offer.id})}}">Apply</a></td>
+            </tr>
+            {% endfor%}
+        </tbody>
+    </table>
+</body>
+</html>
