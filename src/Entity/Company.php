@@ -29,6 +29,11 @@ class Company
      */
     private $jobOffers;
 
+    /**
+     * @ORM\OneToOne(targetEntity=CompanyOwner::class, mappedBy="company", cascade={"persist", "remove"})
+     */
+    private $owner;
+
     public function __construct()
     {
         $this->jobOffers = new ArrayCollection();
@@ -84,5 +89,27 @@ class Company
     public function __toString(): string{
         
         return $this->getName();
+    }
+
+    public function getOwner(): ?CompanyOwner
+    {
+        return $this->owner;
+    }
+
+    public function setOwner(?CompanyOwner $owner): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($owner === null && $this->owner !== null) {
+            $this->owner->setCompany(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($owner !== null && $owner->getCompany() !== $this) {
+            $owner->setCompany($this);
+        }
+
+        $this->owner = $owner;
+
+        return $this;
     }
 }

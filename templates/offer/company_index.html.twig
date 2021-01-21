@@ -6,26 +6,19 @@
     <title>Document</title>
 </head>
 <body>
-    {% for m in app.flashes('success') %}
-        <p>{{m}}</p>
-    {% endfor %}
-    <a href="{{url('app_login')}}">Login</a>
+    <h1> Available Job Offers</h1>
     <table>
         <thead>
             <tr>
-                <th>Company</th>
-                <th>Title</th>   
-                <th>&nbsp;</th>             
+                <th>Title</th>
             </tr>
         </thead>
         <tbody>
             {% for offer in offers %}
             <tr>
-                <td>{{offer.company.name}}</td>
                 <td>{{offer.title}}</td>
-                <td><a href="{{ path("offer_apply", {id: offer.id})}}">Apply</a></td>
             </tr>
-            {% endfor%}
+            {% endfor %}
         </tbody>
     </table>
 </body>
