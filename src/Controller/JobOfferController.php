@@ -140,9 +140,8 @@ class JobOfferController extends AbstractController
             
             $mailer->send(
                         (new Email())
-                            ->from('scabedo85@scabedo.es')
-                            ->to('scabedo85@gmail.com')
-                            //->to($offer->getCompany()->getOwner()->getEmail())
+                            ->from('scabedo@scabedo.es')
+                            ->to($offer->getCompany()->getOwner()->getEmail())
                             ->subject('New application recived')
                             ->html('<p>'.$applicant->getName().' applied for '.$offer->getTitle().'</p><p>Please contact to '.$applicant->getEmail().'</p>')
             );
